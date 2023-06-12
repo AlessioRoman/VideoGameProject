@@ -11,7 +11,7 @@ namespace Projectwork.Models
         public int Quantity { get; set; }
         public float Price { get; set; }
 
-        public int? VideogameId { get; set; }
+        public int VideogameId { get; set; }
         public Videogame Videogame { get; set; }
 
         public SupplyTransaction() { }

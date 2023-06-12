@@ -1,2 +1,136 @@
-﻿<!--TO DO: Carousel for most liked products-->
+﻿@{
+    @model CashFlow;
+    float totalSales = 0;
+    float totalSpending = 0;
+    
+}
 
+<div class="mx-auto my-5 d-flex justify-content-center gap-5">
+    <div class="p-5 bg-info shadow-lg rounded-3" style="width: 30rem;">
+        <h1 class="fw-bolder fs-2">Entrate</h1>
+        <ul class="fs-5">
+            <li class="my-2">
+                Numero ordini dei clienti: <span class="fw-bolder">@Model.Sales.Count()</span>
+            </li>
+            <li class="mb-2">
+                Totale fatturato: <span class="fw-bolder">@{
+                        foreach (SaleTransaction sale in Model.Sales)
+                        {
+                            totalSales += (sale.Quantity * sale.Videogame.Price);
+                        }
+                        <span>@totalSales.ToString("0.00")&euro;</span>
+                    }
+                </span>
+            </li>
+            <li class="mb-2">
+                Scontrino medio: <span class="fw-bolder">@((totalSales / Model.Sales.Count()).ToString("0.00"))&euro;</span>
+            </li>
+        </ul>
+    </div>
+    <div class="p-5 bg-info shadow-lg rounded-3" style="width: 30rem;">
+        <h1 class="fw-bolder fs-2">Uscite</h1>
+        <ul class="fs-5">
+            <li class="my-2">
+                Numero ordini presso fornitori: <span class="fw-bolder">@Model.Supplies.Count()</span>
+            </li>
+            <li class="mb-2">
+                Totale speso: <span class="fw-bolder">
+                    @{
+                        foreach (SupplyTransaction order in Model.Supplies)
+                        {
+                            totalSpending += (order.Quantity * order.Price);
+                        }
+                        <span>@totalSpending.ToString("0.00")&euro;</span>
+                    }
+                </span>
+            </li>
+            <li class="mb-2">
+                Spesa media: <span class="fw-bolder">@((totalSpending / Model.Supplies.Count()).ToString("0.00"))&euro;</span>
+            </li>
+        </ul>
+    </div>
+    <div class="p-5 bg-info shadow-lg rounded-3" style="width: 30rem;">
+        <h1 class="fw-bolder fs-2">Recap</h1>
+        <ul class="fs-5">
+            <li class="my-2">
+                Totale movimenti: <span class="fw-bolder">@(Model.Supplies.Count() + Model.Sales.Count())</span>
+            </li>
+            <li class="mb-2">
+                Status: <span class="fw-bolder">@{
+                        if(totalSpending > totalSales)
+                        {
+                            <span class="bg-danger px-2 rounded-md">Perdita</span>
+                        } else if (totalSales > totalSpending)
+                        {
+                            <span class="bg-success px-2 rounded-md">Profitto</span>
+                        } else if (totalSales == totalSpending)
+                        {
+                            <span class="bg-danger px-2 rounded-md">Break-even</span>
+                        }
+                    }
+                </span>
+            </li>
+            <li class="mb-2">
+                @{
+                    if ((totalSales-totalSpending) >= 0)
+                    {
+                        <span>Profitto: </span>
+                    } else
+                    {
+                        <span>Perdita: </span>
+                    }
+                }
+               <span class="fw-bolder">@((totalSales - totalSpending).ToString("0.00"))&euro;</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div>
+    <h1 class="fw-bolder fs-2">Cashflow</h1>
+    <div class="mx-auto my-5">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Immagine</th>
+                    <th scope="col">Id Prodotto</th>
+                    <th scope="col">Prodotto</th>
+                    <th scope="col">Descrizione</th>
+                    <th scope="col">Operazione</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Quantità</th>
+                    <th scope="col">Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Transaction transaction in Model.Transactions)
+                {
+                    if (transaction.Type == "Entrata")
+                    {
+                        <tr>
+                            <td><img class="img-fluid img_square" style="width: 15rem;" src="@transaction.Videogame.ImgUrl" alt=""></td>
+                            <td>@transaction.VideogameId</td>
+                            <td class="fw-bold">@transaction.Videogame.Name</td>
+                            <td>@transaction.Videogame.Description</td>
+                            <td><span class="bg-success px-2 rounded-md">@transaction.Type</span></td>
+                            <td>@((transaction.Date).ToString("dd/MM/yyyy"))</td>
+                            <td class="fw-bold">@transaction.Quantity</td>
+                            <td class="fw-bold">@((transaction.Quantity * transaction.Price).ToString("0.00")) &euro;</td>
+                        </tr>
+                    } else if (transaction.Type == "Uscita")
+                    {
+                        <tr>
+                            <td><img class="img-fluid img_square" style="width: 15rem;" src="@transaction.Videogame.ImgUrl" alt=""></td>
+                            <td>@transaction.VideogameId</td>
+                            <td class="fw-bold">@transaction.Videogame.Name</td>
+                            <td>@transaction.Videogame.Description</td>
+                            <td><span class="bg-danger px-2 rounded-md">@transaction.Type</span></td>
+                            <td>@((transaction.Date).ToString("dd/MM/yyyy"))</td>
+                            <td class="fw-bold">@transaction.Quantity</td>
+                            <td class="fw-bold">@((transaction.Quantity * transaction.Price).ToString("0.00")) &euro;</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

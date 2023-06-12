@@ -1,0 +1,51 @@
+﻿@model SupplyTransactionForm
+
+<div class="container bg-secondary-subtle shadow-lg rounded border-black my-5 p-3">
+
+    <h2 class="mb-3">Aggiungi videogioco</h2>
+
+    <form asp-controller="ControlPanel" asp-action="Supply" method="post">
+
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label asp-for="Transaction.SupplierName" class="form-label">Nome venditore</label>
+            <input asp-for="Transaction.SupplierName" type="text" class="form-control rounded" required>
+            <span asp-validation-for="Transaction.SupplierName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Transaction.Date" class="form-label">Data acquisto</label>
+            <input asp-for="Transaction.Date" type="date" value="@DateTime.Now" class="form-control rounded">
+            <span asp-validation-for="Transaction.Date" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Transaction.VideogameId" class="form-label">Prodotto</label>
+            <select asp-for="Transaction.VideogameId" rows="10" class="d-block w-100 p-1 form-control rounded">
+                <option value="" selected disabled hidden>Scegli il prodotto</option>
+                @foreach (Videogame videogame in Model.Videogames)
+                {
+                    @if (Model.Transaction.VideogameId == videogame.Id)
+                    {
+                        <option value="@videogame.Id" selected>@videogame.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@videogame.Id">@videogame.Name</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Transaction.Quantity" class="form-label">Quantità</label>
+            <input asp-for="Transaction.Quantity" type="number" class="form-control rounded" required>
+            <span asp-validation-for="Transaction.Quantity" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Transaction.Price" class="form-label">Prezzo di acquisto</label>
+            <input asp-for="Transaction.Price" type="text" class="form-control rounded" required>
+            <span asp-validation-for="Transaction.Price" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary bg-redText bg-primary">Salva</button>
+
+    </form>
+</div>

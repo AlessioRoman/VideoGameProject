@@ -1,0 +1,28 @@
+﻿@model List<SaleTransaction>
+
+<div class="w-75 m-auto">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Imagine</th>
+                <th scope="col">Data</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Prodotto</th>
+                <th scope="col">Id Prodotto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SaleTransaction sale in Model)
+            {
+                <tr class="a">
+
+                    <td><img class="img-fluid img_square" style="width: 15rem;" src="@sale.Videogame.ImgUrl" alt=""></td>
+                    <td class="fw-bold">@sale.Date</td>
+                    <td>@sale.Quantity</td>
+                    <td class="fw-bolder">@sale.Videogame.Name;</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

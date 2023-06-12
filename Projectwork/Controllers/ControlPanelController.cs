@@ -163,6 +163,26 @@ namespace Projectwork.Controllers
                     Price = data.Transaction.Price
                 };
                 db.Supplies.Add(newTransaction);
+
+                List<StorageItem> items = db.StorageItem.ToList();
+                bool foundItem = false;
+                foreach (StorageItem item in items)
+                {
+                    if  (newTransaction.VideogameId == item.VideogameId)
+                    {
+                        item.Quantity += newTransaction.Quantity;
+                        foundItem = true;
+                    }
+                }
+                if (!foundItem)
+                {
+                    StorageItem newItem = new()
+                    {
+                        Quantity = newTransaction.Quantity,
+                        VideogameId = newTransaction.VideogameId
+                    };
+                    db.StorageItem.Add(newItem);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Storage");
             }
@@ -180,7 +200,15 @@ namespace Projectwork.Controllers
 
         public IActionResult Storage() 
         {
-            return View();
+            using (ShopContext db = new())
+            {
+                List<StorageItem> items = db.StorageItem.ToList();
+                foreach (StorageItem item in items)
+                {
+                    item.Videogame = db.Videogames.Where(v => v.Id == item.VideogameId).FirstOrDefault();
+                }
+                return View(items);
+            }
         }
     }
 }

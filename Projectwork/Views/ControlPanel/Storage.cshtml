@@ -1,1 +1,45 @@
-﻿
+﻿@model List<StorageItem>
+
+<div class="w-75 mx-auto my-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Immagine</th>
+                <th scope="col">Id prodotto</th>
+                <th scope="col">Titolo</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Disponibilità</th>
+                <th scope="col">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (StorageItem item in Model)
+            {
+                <tr class="a">
+                    <td><img class="img-fluid img_square" style="width: 15rem;" src="@item.Videogame.ImgUrl" alt=""></td>
+                    <td>@item.VideogameId</td>
+                    <td class="fw-bold">@item.Videogame.Name</td>
+                    <td>@item.Videogame.Description</td>
+                    <td class="fw-bolder">@item.Quantity</td>
+                    <td>
+                        @if (item.Quantity <= 5 && item.Quantity > 0)
+                        {
+                            <span class="bg-warning px-1 rounded-md">Scarsa</span>
+                        } else if(item.Quantity > 5){
+                            <span class="bg-success  px-1 rounded-md">Disponibile</span>
+                        } else if (item.Quantity == 0)
+                        {
+                            <span class="bg-danger  px-1 rounded-md">N.D.</span>
+                        }
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm d-block d-flex justify-content-center" href="@Url.Action("Supply", "ControlPanel")">
+                            <img src="https://cdn-icons-png.flaticon.com/128/3523/3523885.png" width="24" heigh="24">
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

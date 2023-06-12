@@ -11,6 +11,7 @@ namespace Projectwork.Database
         public DbSet<Videogame> Videogames { get; set; }
         public DbSet<SaleTransaction> Sales { get; set; }
         public DbSet<SupplyTransaction> Supplies { get; set; }
+        public DbSet<StorageItem> StorageItem { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

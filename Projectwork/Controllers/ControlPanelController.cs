@@ -193,6 +193,10 @@ namespace Projectwork.Controllers
             using (ShopContext db = new())
             {
                 List<SaleTransaction> sales = db.Sales.ToList();
+                foreach (SaleTransaction sale in sales) 
+                {
+                    sale.Videogame = db.Videogames.Where(v => v.Id == sale.VideogameId).FirstOrDefault();
+                }
                 return View(sales);
             }
         }

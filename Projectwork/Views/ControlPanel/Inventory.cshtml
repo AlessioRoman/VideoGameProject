@@ -4,41 +4,41 @@
 
 @model List<Videogame>
 
-<div class="">
-<a href="@Url.Action("Create", "ControlPanel")" class="btn btn-primary bg-primary py-2 px-4 rounded-3 mt-5 mb-2">
-    Aggiungi prodotto
-</a>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">Immagine</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Descrizione</th>
-            <th scope="col">Prezzo</th>
-            <th scope="col">Like</th>
-                <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Videogame videogame in Model)
-        {
-            <tr class="a">
-
-                <td><img class="img-fluid img_square" style="width: 15rem;" src="@videogame.ImgUrl" alt=""></td>
-                <td class="fw-bold">@videogame.Name</td>
-                <td>@videogame.Description</td>
-                    <td class="fw-bolder">@videogame.Price.ToString("0.00")&euro;</td>
-                <td>@videogame.Like.ToString()</td>
-                <td>
-                    <a class="btn btn-warning btn-sm d-block d-flex justify-content-center" href="@Url.Action("Update", "ControlPanel", new {id = videogame.Id})">
-                        <img src="https://cdn-icons-png.flaticon.com/128/4391/4391389.png" width="24" heigh="24">
-                    </a>
-                        <a class="btn btn-danger btn-d-block d-flex justify-content-center mt-3" href="@Url.Action("Delete", "ControlPanel", new {id = videogame.Id})">
-                            <img src="https://cdn-icons-png.flaticon.com/128/9789/9789276.png" width="24" height="24">
-                        </a>
-                </td>
+<div>
+    <a href="@Url.Action("Create", "ControlPanel")" class="btn btn-primary bg-primary py-2 px-4 rounded-3 mt-5 mb-2">
+        Aggiungi prodotto
+    </a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Immagine</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrizione</th>
+                <th scope="col">Prezzo</th>
+                <th scope="col">Like</th>
+                    <th scope="col">Actions</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (Videogame videogame in Model)
+            {
+                <tr class="a">
+
+                    <td><img class="img-fluid img_square" style="width: 15rem;" src="@videogame.ImgUrl" alt=""></td>
+                    <td class="fw-bold">@videogame.Name</td>
+                    <td>@videogame.Description</td>
+                        <td class="fw-bolder">@videogame.Price.ToString("0.00")&euro;</td>
+                    <td>@videogame.Like.ToString()</td>
+                    <td>
+                        <a class="btn btn-warning btn-sm d-block d-flex justify-content-center" href="@Url.Action("Update", "ControlPanel", new {id = videogame.Id})">
+                            <img src="https://cdn-icons-png.flaticon.com/128/4391/4391389.png" width="24" heigh="24">
+                        </a>
+                            <a class="btn btn-danger btn-d-block d-flex justify-content-center mt-3" href="@Url.Action("Delete", "ControlPanel", new {id = videogame.Id})">
+                                <img src="https://cdn-icons-png.flaticon.com/128/9789/9789276.png" width="24" height="24">
+                            </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Projectwork.Models;
-using Projectwork.Models.Transactions;
 using System.Collections.Generic;
 
 namespace Projectwork.Database

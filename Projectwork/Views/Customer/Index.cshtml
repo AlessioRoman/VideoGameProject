@@ -1,0 +1,12 @@
+﻿@model List<Videogame>
+
+@{
+    foreach(Videogame videogame in Model)
+    {
+        <div>
+            <h1>@videogame.Name</h1>
+            <h1>@videogame.Like</h1>
+        </div>
+    }
+
+}

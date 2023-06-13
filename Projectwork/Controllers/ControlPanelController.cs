@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Projectwork.Database;
 using Projectwork.Models;
-using Projectwork.Models.Transactions;
 using System.Data;
 
 namespace Projectwork.Controllers

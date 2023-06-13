@@ -1,6 +1,4 @@
-﻿using Projectwork.Models.Transactions;
-
-namespace Projectwork.Models
+﻿namespace Projectwork.Models
 {
     public class SupplyTransactionForm
     {

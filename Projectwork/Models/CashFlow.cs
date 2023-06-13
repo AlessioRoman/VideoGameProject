@@ -1,4 +1,6 @@
-﻿namespace Projectwork.Models
+﻿using Projectwork.Models.Transactions;
+
+namespace Projectwork.Models
 {
     public class CashFlow
     {

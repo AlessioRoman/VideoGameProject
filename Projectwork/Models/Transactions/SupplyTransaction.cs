@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Projectwork.Models
+namespace Projectwork.Models.Transactions
 {
     public class SupplyTransaction
     {

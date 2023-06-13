@@ -1,4 +1,4 @@
-﻿namespace Projectwork.Models
+﻿namespace Projectwork.Models.Transactions
 {
     public class SaleTransaction
     {

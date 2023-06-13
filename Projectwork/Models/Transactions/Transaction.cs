@@ -1,4 +1,4 @@
-﻿namespace Projectwork.Models
+﻿namespace Projectwork.Models.Transactions
 {
     public class Transaction
     {
@@ -14,12 +14,12 @@
 
         public Transaction(DateTime date, int quantity, float price, string type, int videogameId, Videogame videogame)
         {
-            this.Date = date;
-            this.Quantity = quantity;
-            this.Price = price;
-            this.Type = type;
-            this.VideogameId = videogameId;
-            this.Videogame = videogame;
+            Date = date;
+            Quantity = quantity;
+            Price = price;
+            Type = type;
+            VideogameId = videogameId;
+            Videogame = videogame;
         }
     }
 }

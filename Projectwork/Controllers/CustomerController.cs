@@ -43,5 +43,10 @@ namespace Projectwork.Controllers
                 }
             }
         }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }

@@ -4,12 +4,12 @@
     <div>
         <div class="container mt-5">
             <div class="w-75 p-3 m-auto">
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" style="height: 450px;">
+                <div id="carouselExampleAutoplaying" class="carousel slide m-auto" data-bs-ride="carousel" style="height: 450px;">
                     <div class="carousel-inner">
                         @foreach (Videogame videogame in Model)
                         {
-                            <div class="carousel-item @(videogame == Model.First() ? "active" : "") d-flex justify-content-center">
-                                <img src="@videogame.ImgUrl" class="d-block w-50" style="height: 450px;" alt="@videogame.Name">
+                            <div class="carousel-item @(videogame == Model.First() ? "active" : "")">
+                                <img src="@videogame.ImgUrl" class="d-block w-50 m-auto" style="height: 450px;" alt="@videogame.Name">
                             </div>
                         }
                     </div>

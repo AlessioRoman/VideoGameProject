@@ -44,6 +44,47 @@ namespace Projectwork.Controllers
             }
         }
 
+        public IActionResult Acquista(int id) 
+        { 
+            using (ShopContext db = new())
+            {
+                SaleTransactionForm data = new();
+                data.Videogame = db.Videogames.Where(v => v.Id == id).FirstOrDefault();
+
+                return View(data);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Acquista(SaleTransactionForm data, int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                using (ShopContext db = new())
+                {
+                    return View("Supply", data);
+                }
+            }
+
+            using (ShopContext db = new())
+            {
+                data.Videogame = db.Videogames.Where(v => v.Id == id).FirstOrDefault();
+
+                SaleTransaction newTransaction = new()
+                {
+                    Date = DateTime.Now,
+                    Quantity = data.Transaction.Quantity,
+                    VideogameId = data.Videogame.Id,
+                    Videogame = data.Videogame
+                };
+                db.Sales.Add(newTransaction);
+                db.SaveChanges();
+
+                return RedirectToAction("Catalogo");
+            }
+        }
+
         public IActionResult Contact()
         {
             return View();

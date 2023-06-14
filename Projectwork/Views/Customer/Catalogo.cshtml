@@ -1,4 +1,12 @@
-﻿@model List<Videogame>
+﻿@{
+    Layout = "_CustomerLayout";
+}
+
+@model List<Videogame>
+
+<div class="my-5">
+    <h1 class="text-center fs-1 fw-bolder">Ecco il nostro catalogo!</h1>
+</div>
 
 <div class="container mt-3">
 
@@ -6,27 +14,28 @@
 
         @foreach (Videogame videogame in Model)
         {
-            <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+            <div class="container bg-secondary-subtle shadow-lg rounded border-black my-5 p-0 w-75">
 
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="@videogame.ImgUrl" class="img-fluid rounded-start" alt="@videogame.Name">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title fs-2">@videogame.Name</h5>
-                                <p class="card-text">@videogame.Description</p>
-                                <p class="card-text"><small class="text-body-secondary"></small>@videogame.Price.ToString("0.00") €</p>
-                                <a href="" class="btn btn-success"> <img width="24" height="24" src="https://cdn-icons-png.flaticon.com/128/1374/1374128.png" alt="acquista" /></a>
-                                <a href="@Url.Action("Details", "Customer", new { id = videogame.Id })" class="btn btn-secondary"> <img width="24" height="24" src="https://cdn-icons-png.flaticon.com/128/9716/9716842.png" alt="Dettagli" /></a>
-                            </div>
-                        </div>
+                <div class="row g-0">
+
+                    <div class="col-md-4">
+                        <img src="@videogame.ImgUrl" class="img-fluid rounded-start" alt="Immagine @videogame.Name">
                     </div>
+
+                    <div class="col-md-8">
+                        <div class="p-3">
+                            <h1 class="mt-5 fs-3 mb-2"><strong>@videogame.Name</strong></h1>
+                            <p class="mb-2 fs-5">@videogame.Description</p>
+                            <h2 class="mb-4 fs-3"><strong>@videogame.Price.ToString("0.00") €</strong></h2>
+                            <a href="@Url.Action("Details", "Customer", new { id = videogame.Id })" class="btn btn-warning"> <img width="24" height="24" src="https://cdn-icons-png.flaticon.com/128/9716/9716842.png" alt="Dettagli" /></a>
+                            <a href="@Url.Action("Acquista", "Customer", new { id = videogame.Id })" class="btn btn-info"> <img width="24" height="24" src="https://cdn-icons-png.flaticon.com/128/1374/1374128.png" alt="acquista" /></a>
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
-
         }
         
     </div>

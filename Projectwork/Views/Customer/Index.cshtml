@@ -14,38 +14,55 @@
 </div>
 
 
-<div class="d-flex justify-content-between w-75 m-auto">
+<div>
     <h1 class="fs-1 text-center my-5 fw-bolder fst-italic">Take your game to the <span class="text-primary">next level</span></h1>
-    <img href="./tweets.png" alt="tweets" style="height: 300px;"/>
 </div>
 
-
-<h1 class="fs-2 text-center my-5 fw-bolder">I nostri preferiti!</h1>
-@{
+<div>
     <div>
-        <div class="container mt-5">
-            <div class=" p-3 m-auto">
-                <div id="carouselExampleAutoplaying" class="carousel slide m-auto" data-bs-ride="carousel" style="height: 600px;">
-                    <div class="carousel-inner">
-                        @foreach (Videogame videogame in Model)
-                        {
-                            <div class="carousel-item @(videogame == Model.First() ? "active" : "")">
-                                <img src="@videogame.ImgUrl" class="d-block w-50 m-auto" style="height: 450px;" alt="@videogame.Name">
-                                <h1 class="fs-4 fw-bolder text-center mt-4 mb-2">@videogame.Name</h1>
-                                <p class="fs-4 text-center">&#128077; @videogame.Like</p>
+        <h1 class="fs-3 text-center my-5 fw-bolder">I nostri <span class="text-primary">giochi</span> preferiti!</h1>
+        @{
+            <div>
+                <div class="container mt-5">
+                    <div class=" p-3 m-auto">
+                        <div id="carouselExampleAutoplaying" class="carousel slide m-auto" data-bs-ride="carousel" style="height: 600px;">
+                            <div class="carousel-inner">
+                                @foreach (Videogame videogame in Model)
+                                {
+                                    <div class="carousel-item @(videogame == Model.First() ? "active" : "")">
+                                        <img src="@videogame.ImgUrl" class="d-block w-50 m-auto" style="height: 450px;" alt="@videogame.Name">
+                                        <h1 class="fs-4 fw-bolder text-center mt-4 mb-2">@videogame.Name</h1>
+                                        <p class="fs-4 text-center">&#128077; @videogame.Like</p>
+                                    </div>
+                                }
                             </div>
-                        }
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon bg-black rounded-full p-2" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                <span class="carousel-control-next-icon bg-black rounded-full p-2" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon bg-black rounded-full p-2" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                        <span class="carousel-control-next-icon bg-black rounded-full p-2" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
-        </div>
+        }
     </div>
-}
+</div>
+<div>
+    <h1 class="fs-3 text-center my-5 fw-bolder flex-nowrap">Prossime <span class="text-primary">uscite</span></h1>
+    <img class="w-screen" src="https://gametimers.it/wp-content/uploads/2023/03/final-fantasy-16-square-enix-scaled.jpeg" alt="preorder" />
+</div>
+
+<div>
+    <h1 class="fs-3 text-center my-5 fw-bolder flex-nowrap">Le nostre <span class="text-primary">persone</span> preferite!</h1>
+    <div class="d-flex justify-content-center gap-3">
+        <img src="/tweet-ema-cropped.png" style="width: 22vw;"/>
+        <img src="/tweet-maridona-cropped.png" style="width: 20vw;" />
+        <img src="/tweet-martina-cropped.png" style="width: 20vw;" />
+        <img src="/tweet-bry-cropped.png" style="width: 20vw;" />
+    </div>
+</div>
+

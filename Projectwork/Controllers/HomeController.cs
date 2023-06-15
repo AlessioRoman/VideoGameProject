@@ -38,6 +38,8 @@ namespace Projectwork.Controllers
                     Transaction newTransaction = new(order.Date, order.Quantity, order.Price, "Uscita", order.VideogameId, order.Videogame);
                     newCashflow.Transactions.Add(newTransaction);
                 }
+                newCashflow.Transactions = newCashflow.Transactions.OrderByDescending(transaction => transaction.Date).ToList();
+
                 return View(newCashflow);
             }
         }

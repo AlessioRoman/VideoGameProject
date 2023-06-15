@@ -1,21 +1,27 @@
-﻿@model Videogame 
+﻿@{
+    Layout = "_CustomerLayout";
+}
 
-<div class="col-lg-4 mb-3 d-flex align-items-stretch">
+@model Videogame 
 
-    <div class="card mb-3" style="max-width: 540px;">
+<div>
+    <div class="container bg-secondary-subtle shadow-lg rounded border-black my-5 p-0 w-75">
+
         <div class="row g-0">
+
             <div class="col-md-4">
-                <img src="@Model.ImgUrl" class="img-fluid rounded-start" alt="@Model.Name">
+                <img src="@Model.ImgUrl" class="img-fluid rounded-start" alt="Immagine @Model.Name">
             </div>
+
             <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title fs-2">@Model.Name</h5>
-                    <p class="card-text">@Model.Description</p>
-                    <p class="card-text"><small class="text-body-secondary"></small>@Model.Price.ToString("0.00") €</p>
-                    <a href="" class="btn btn-success"> <img width="24" height="24" src="https://cdn-icons-png.flaticon.com/128/1374/1374128.png" alt="acquista" /></a>
+                <div class="p-3">
+                    <h1 class="mt-5 fs-5 mb-2"><strong>@Model.Name</strong></h1>
+                    <p class="mb-2">@Model.Description</p>
+                    <h2 class="mb-4"><strong>@Model.Price.ToString("0.00") €</strong></h2>
                 </div>
             </div>
-        </div>
-    </div>
 
+        </div>
+
+    </div>
 </div>

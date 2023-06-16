@@ -85,6 +85,25 @@ namespace Projectwork.Controllers
             }
         }
 
+        public IActionResult Like()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Like(int id)
+        {
+            using (ShopContext db = new())
+            {
+                Videogame gameToLike = db.Videogames.Where(v => v.Id == id).FirstOrDefault();
+                gameToLike.Like += 1;
+                db.SaveChanges();
+
+                return RedirectToAction("Catalogo");
+            }
+        }
+
         public IActionResult Contact()
         {
             return View();
